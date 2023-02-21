@@ -1,15 +1,23 @@
-package com.example.demo.models;
+package bryksa.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
 
+@Entity(name = "to_do_model")
 public class ToDoModel {
 
-    private int id = 1;
+@Id
+    private Integer id = 1;
     private String date;
     private String title;
     private String details;
     private String priority;
     private String status;
+
+    public ToDoModel() {
+    }
 
     public ToDoModel(int id, String date, String title, String details, String priority, String status) {
         this.id = id;
