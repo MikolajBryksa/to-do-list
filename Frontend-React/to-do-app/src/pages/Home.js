@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { Link, useParams } from 'react-router-dom';
 
 export default function Home() {
 
     const [tasks, setTasks] = useState([]);
+
+    const {id}=useParams()
 
     useEffect(() => {
         loadTasks();
@@ -15,16 +18,24 @@ export default function Home() {
         setTasks(result.data);
     }
 
+    const deleteTask=async (id)=>{
+        await axios.delete(`http://localhost:8080/tasks/${id}`)
+        loadTasks();
+    }
+
     return (
+
+
         <div className='container'>
+
             <div className='py-4'>
-                <table class="table table-striped table-hover shadow">
+                <table className="table table-striped table-hover shadow">
                     <thead>
                         <tr>
-                            <th scope="col"></th>
+                            <th class="text-center">Nr</th>
                             <th class="text-center">Date</th>
                             <th class="text-center">Title</th>
-                            <th class="text-center">Details</th>
+                            {/* <th class="text-center">Details</th> */}
                             <th class="text-center">Priority</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Actions</th>
@@ -35,23 +46,23 @@ export default function Home() {
                         {
                             tasks.map((task,index)=>(
                         <tr>
-                            <th scope="row" key={index}>{index+1}</th>
+                            <td class="text-center" key={index}>{index+1}</td>
                             <td class="text-center">{task.date}</td>
                             <td class="text-center">{task.title}</td>
-                            <td class="text-center">{task.details}</td>
+                            {/* <td class="text-center">{task.details}</td> */}
                             <td class="text-center">{task.priority}</td>
                             <td class="text-center">{task.status}</td>
                             <td class="text-center">
-                                <button className="btn btn-primary mx-2">Edit</button>
-                                <button className="btn btn-danger mx-2">Delete</button>
+                                <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}>View</Link>
+                                <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}>Edit</Link>
+                                <button className="btn btn-success me-1" onClick={()=>deleteTask(task.id)}>Done</button>
+                                <button className="btn btn-danger me-1" onClick={()=>deleteTask(task.id)}>Delete</button>
                             </td>
 
                         </tr>
 
                         ))
                         }
-
-
 
                     </tbody>
                 </table>

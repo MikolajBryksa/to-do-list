@@ -17,8 +17,11 @@ public class ToDoService {
         this.toDoRepository = toDoRepository;
     }
 
-    public List<ToDoModel> getAllItems(){
+    public List<ToDoModel> getAllModels(){
         return toDoRepository.findAll();
     }
-    
+
+    public void save(ToDoModel newToDoModel) {
+         toDoRepository.save(newToDoModel);
+    }
 }

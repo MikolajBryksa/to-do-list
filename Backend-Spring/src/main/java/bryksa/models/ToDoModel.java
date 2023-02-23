@@ -1,15 +1,16 @@
 package bryksa.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.util.Objects;
 
 @Entity(name = "to_do_model")
 public class ToDoModel {
 
-@Id
-    private Integer id = 1;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String date;
     private String title;
     private String details;
@@ -19,7 +20,7 @@ public class ToDoModel {
     public ToDoModel() {
     }
 
-    public ToDoModel(int id, String date, String title, String details, String priority, String status) {
+    public ToDoModel(Integer id, String date, String title, String details, String priority, String status) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -28,76 +29,51 @@ public class ToDoModel {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDate() {
-        return date;
     }
 
     public void setDate(String date) {
         this.date = date;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDetails() {
-        return details;
     }
 
     public void setDetails(String details) {
         this.details = details;
     }
 
-    public String getPriority() {
-        return priority;
-    }
-
     public void setPriority(String priority) {
         this.priority = priority;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ToDoModel toDoModel = (ToDoModel) o;
-        return id == toDoModel.id && Objects.equals(date, toDoModel.date) && Objects.equals(title, toDoModel.title) && Objects.equals(details, toDoModel.details) && Objects.equals(priority, toDoModel.priority) && Objects.equals(status, toDoModel.status);
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, date, title, details, priority, status);
+    public String getDate() {
+        return date;
     }
 
-    @Override
-    public String toString() {
-        return "TodoModel{" +
-                "id=" + id +
-                ", date='" + date + '\'' +
-                ", title='" + title + '\'' +
-                ", details='" + details + '\'' +
-                ", priority='" + priority + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
