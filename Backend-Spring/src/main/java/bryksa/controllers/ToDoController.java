@@ -5,7 +5,6 @@ import bryksa.models.ToDoModel;
 import bryksa.repository.ToDoRepository;
 import bryksa.services.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

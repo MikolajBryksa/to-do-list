@@ -5,22 +5,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 @Entity(name = "to_do_model")
 public class ToDoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String date;
+    private LocalDate date;
     private String title;
     private String details;
     private String priority;
-    private String status;
+    private Boolean status;
 
     public ToDoModel() {
     }
 
-    public ToDoModel(Integer id, String date, String title, String details, String priority, String status) {
+    public ToDoModel(Integer id, LocalDate date, String title, String details, String priority, Boolean status) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -33,7 +35,7 @@ public class ToDoModel {
         this.id = id;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -49,7 +51,7 @@ public class ToDoModel {
         this.priority = priority;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -57,7 +59,7 @@ public class ToDoModel {
         return id;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -73,7 +75,7 @@ public class ToDoModel {
         return priority;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 }

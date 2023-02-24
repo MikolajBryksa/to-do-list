@@ -6,7 +6,7 @@ export default function Home() {
 
     const [tasks, setTasks] = useState([]);
 
-    const {id}=useParams()
+    const { id } = useParams()
 
     useEffect(() => {
         loadTasks();
@@ -18,10 +18,18 @@ export default function Home() {
         setTasks(result.data);
     }
 
-    const deleteTask=async (id)=>{
+    const deleteTask = async (id) => {
         await axios.delete(`http://localhost:8080/tasks/${id}`)
         loadTasks();
     }
+
+
+    const [value, setValue] = useState(false);
+
+    const handleClick = () => {
+        setValue(!value);
+    };
+
 
     return (
 
@@ -35,33 +43,29 @@ export default function Home() {
                             <th class="text-center">Nr</th>
                             <th class="text-center">Date</th>
                             <th class="text-center">Title</th>
-                            {/* <th class="text-center">Details</th> */}
                             <th class="text-center">Priority</th>
-                            <th class="text-center">Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {
-                            tasks.map((task,index)=>(
-                        <tr>
-                            <td class="text-center" key={index}>{index+1}</td>
-                            <td class="text-center">{task.date}</td>
-                            <td class="text-center">{task.title}</td>
-                            {/* <td class="text-center">{task.details}</td> */}
-                            <td class="text-center">{task.priority}</td>
-                            <td class="text-center">{task.status}</td>
-                            <td class="text-center">
-                                <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}>View</Link>
-                                <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}>Edit</Link>
-                                <button className="btn btn-success me-1" onClick={()=>deleteTask(task.id)}>Done</button>
-                                <button className="btn btn-danger me-1" onClick={()=>deleteTask(task.id)}>Delete</button>
-                            </td>
+                            tasks.map((task, index) => (
+                                <tr>
+                                    <td class="text-center" key={index}>{index + 1}</td>
+                                    <td class="text-center">{task.date}</td>
+                                    <td class="text-center">{task.title}</td>
+                                    <td class="text-center">{task.priority}</td>
+                                    <td class="text-center">
+                                        <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}>View</Link>
+                                        <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}>Edit</Link>
+                                        <button className="btn btn-success me-1" onClick={handleClick}>{value ? "True" : "False"}</button>
+                                        <button className="btn btn-danger me-1" onClick={() => deleteTask(task.id)}>Delete</button>
+                                    </td>
 
-                        </tr>
+                                </tr>
 
-                        ))
+                            ))
                         }
 
                     </tbody>

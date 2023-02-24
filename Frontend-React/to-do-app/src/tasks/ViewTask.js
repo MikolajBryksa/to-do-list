@@ -4,17 +4,17 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function ViewTask() {
 
-    const [task, setTask]=useState({
-        date:"",
-        title:"",
-        details:"",
-        priority:"",
-        status:"",
+    const [task, setTask] = useState({
+        date: "",
+        title: "",
+        details: "",
+        priority: "",
+        status: "",
     })
 
-    const {id}=useParams();
+    const { id } = useParams();
 
-    useEffect(()=>{
+    useEffect(() => {
         loadTask();
     }, [])
 
@@ -23,13 +23,15 @@ export default function ViewTask() {
         setTask(result.data);
     }
 
-  return (
-    <div className="container">
-        <div className="row">
-            <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                <h2 className="text-center m-4">Task nr {task.id}</h2>
+    const status = task.status
 
-                <div className='card'>
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+                    <h2 className="text-center m-4">Task nr {task.id}</h2>
+
+                    <div className='card'>
                         <ul className='list-group list-group-flush'>
                             <li className='list-group-item'>
                                 Date: <b>{task.date}</b>
@@ -44,16 +46,16 @@ export default function ViewTask() {
                                 Priority: <b>{task.priority}</b>
                             </li>
                             <li className='list-group-item'>
-                                Status: <b>{task.status}</b>
+                                Status: <b>{String(status)}</b>
                             </li>
                         </ul>
-                </div>
-                <br></br>
-                <div className="col-md-12 text-center">
-                <Link className="btn btn-secondary me-1" to={"/"}>Back</Link>
+                    </div>
+                    <br></br>
+                    <div className="col-md-12 text-center">
+                        <Link className="btn btn-secondary me-1" to={"/"}>Back</Link>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
