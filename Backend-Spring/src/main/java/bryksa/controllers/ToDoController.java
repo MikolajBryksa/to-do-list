@@ -21,12 +21,12 @@ public class ToDoController {
         this.toDoRepository = toDoRepository;
     }
 
-    @GetMapping("/tasks")
+    @GetMapping("/later")
     public List<ToDoModel> getUndoneModels() {
         return toDoService.getUndoneModels();
     }
 
-    @GetMapping("/today")
+    @GetMapping("/")
     public List<ToDoModel> getTodayModels() {
         return toDoService.getTodayModels();
     }

@@ -85,9 +85,9 @@ export default function EditTask() {
                                 value={priority}
                                 onChange={(e) => setPriority(e.target.value)}>
 
-                                <option className="btn" value="">Select priority</option>
-                                <option value="NORMAL">Normal</option>
-                                <option value="URGNET">Urgent</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Low">Low</option>
+                                <option value="Urgent">Urgent</option>
                             </select>
                         </div>
 

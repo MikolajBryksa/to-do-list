@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link, useParams } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 export default function Today() {
 
@@ -14,7 +15,7 @@ export default function Today() {
     }, []);
 
     const loadTasks = async () => {
-        const result = await axios.get("http://localhost:8080/today");
+        const result = await axios.get("http://localhost:8080/");
         setTasks(result.data);
     }
 
@@ -28,38 +29,45 @@ export default function Today() {
         loadTasks();
     }
 
+    const getPriority = (priority) => {
+        if (priority === "Normal") return "table-default";
+        if (priority === "Urgent") return "table-danger";
+        if (priority === "Low") return "table-secondary";
+    };
+
     return (
 
 
         <div className='container'>
 
             <div className='py-4'>
-                <table className="table table-striped table-hover shadow">
+                <table className="table table-hover shadow">
                     <thead>
                         <tr>
-                            <th class="text-center">Nr</th>
-                            <th class="text-center">Date</th>
-                            <th class="text-center">Title</th>
-                            <th class="text-center">Priority</th>
-                            <th class="text-center">Actions</th>
+                            {/* <th className="text-center">Nr</th> */}
+                            <th className="text-center">Date</th>
+                            {/* <th className="text-center">Priority</th> */}
+                            <th className="text-center">Title</th>
+                            <th className="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        
+
 
                         {
                             tasks.map((task, index) => (
-                                <tr>
-                                    <td class="text-center" key={index}>{index + 1}</td>
-                                    <td class="text-center">{task.date}</td>
-                                    <td class="text-center">{task.title}</td>
-                                    <td class="text-center">{task.priority}</td>
-                                    <td class="text-center">
-                                        <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}>View</Link>
-                                        <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}>Edit</Link>
-                                        <button className="btn btn-success me-1" onClick={() => statusTask(task.id)}>Done</button>
-                                        <button className="btn btn-danger me-1" onClick={() => deleteTask(task.id)}>Delete</button>
+                                <tr className={getPriority(task.priority)}>
+                                    {/* <td className="text-center" key={index}>{index + 1}</td> */}
+                                    <td className="text-center">{task.date}</td>
+                                    {/* <td className="text-center">{task.priority}</td> */}
+                                    <td className="text-center">{task.title}</td>
+                                    <td className="text-center">
+                                        {/* <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}>View</Link> */}
+                                        <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}><Icon.ArrowRight /></Link>
+                                        <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}><Icon.PlusLg /></Link>
+                                        <button className="btn btn-success me-1" onClick={() => statusTask(task.id)}><Icon.CheckLg /></button>
+                                        <button className="btn btn-danger me-1" onClick={() => deleteTask(task.id)}><Icon.XLg /></button>
                                     </td>
 
                                 </tr>

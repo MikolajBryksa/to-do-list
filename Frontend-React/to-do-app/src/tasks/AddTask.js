@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function AddTask() {
 
-        const [date, setDate] = useState('');
+        const today = new Date();
+
+        const [date, setDate] = useState({ today });
         const [title, setTitle] = useState('');
         const [details, setDetails] = useState('');
         const [priority, setPriority] = useState('');
@@ -49,6 +51,7 @@ export default function AddTask() {
                                 name="title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                required
                             />
                         </div>
 
@@ -70,11 +73,13 @@ export default function AddTask() {
                                 value={priority}
                                 onChange={(e) => setPriority(e.target.value)}>
 
-                                <option className="btn" value="">Select priority</option>
-                                <option value="NORMAL">Normal</option>
-                                <option value="URGNET">Urgent</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Low">Low</option>
+                                <option value="Urgent">Urgent</option>
                             </select>
                         </div>
+
+
 
                         <div className="col-md-12 text-center">
                             <button type="submit" className="btn btn-primary me-1">Save</button>
