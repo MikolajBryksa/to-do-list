@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link, useParams } from 'react-router-dom';
 
-export default function Home() {
+export default function Today() {
 
     const [tasks, setTasks] = useState([]);
 
@@ -14,7 +14,7 @@ export default function Home() {
     }, []);
 
     const loadTasks = async () => {
-        const result = await axios.get("http://localhost:8080/tasks");
+        const result = await axios.get("http://localhost:8080/today");
         setTasks(result.data);
     }
 
@@ -45,6 +45,8 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
+
+                        
 
                         {
                             tasks.map((task, index) => (

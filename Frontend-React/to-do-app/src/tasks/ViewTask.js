@@ -29,15 +29,12 @@ export default function ViewTask() {
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className="text-center m-4">Task nr {task.id}</h2>
+                    <h2 className="text-center m-4">{task.title}</h2>
 
                     <div className='card'>
                         <ul className='list-group list-group-flush'>
                             <li className='list-group-item'>
                                 Date: <b>{task.date}</b>
-                            </li>
-                            <li className='list-group-item'>
-                                Title: <b>{task.title}</b>
                             </li>
                             <li className='list-group-item'>
                                 Details: <b>{task.details}</b>
@@ -46,7 +43,7 @@ export default function ViewTask() {
                                 Priority: <b>{task.priority}</b>
                             </li>
                             <li className='list-group-item'>
-                                Status: <b>{String(status)}</b>
+                                Done: <b>{String(status)}</b>
                             </li>
                         </ul>
                     </div>

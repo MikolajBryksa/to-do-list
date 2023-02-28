@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link, useParams } from 'react-router-dom';
 
-export default function Home() {
+export default function Archive() {
 
     const [tasks, setTasks] = useState([]);
 
@@ -14,7 +14,7 @@ export default function Home() {
     }, []);
 
     const loadTasks = async () => {
-        const result = await axios.get("http://localhost:8080/tasks");
+        const result = await axios.get("http://localhost:8080/archive");
         setTasks(result.data);
     }
 
@@ -56,7 +56,7 @@ export default function Home() {
                                     <td class="text-center">
                                         <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}>View</Link>
                                         <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}>Edit</Link>
-                                        <button className="btn btn-success me-1" onClick={() => statusTask(task.id)}>Done</button>
+                                        <button className="btn btn-warning me-1" onClick={() => statusTask(task.id)}>Undone</button>
                                         <button className="btn btn-danger me-1" onClick={() => deleteTask(task.id)}>Delete</button>
                                     </td>
 

@@ -22,10 +22,20 @@ public class ToDoController {
     }
 
     @GetMapping("/tasks")
-    public List<ToDoModel> getAllModels() {
-        return toDoService.getAllModels();
+    public List<ToDoModel> getUndoneModels() {
+        return toDoService.getUndoneModels();
     }
-    
+
+    @GetMapping("/today")
+    public List<ToDoModel> getTodayModels() {
+        return toDoService.getTodayModels();
+    }
+
+    @GetMapping("/archive")
+    public List<ToDoModel> getDoneModels() {
+        return toDoService.getDoneModels();
+    }
+
     @PostMapping("/api/create-task")
     public void newToDoModel(@RequestBody ToDoModel toDoModel){
         toDoService.save(toDoModel);
@@ -56,7 +66,15 @@ public class ToDoController {
             throw new ModelNotFoundException(id);
         }
         toDoRepository.deleteById(id);
-        return "Task with id " + id + " has beem deleted success.";
+        return "Task with id " + id + " has been deleted success.";
+    }
+
+    @GetMapping("/status-task/{id}")
+    public void setModelDone(@PathVariable Integer id){
+        ToDoModel doneTask = toDoRepository.findById(id).orElseThrow(()->new ModelNotFoundException(id));
+        boolean status = doneTask.getStatus();
+        doneTask.setStatus(!status);
+        toDoRepository.save(doneTask);
     }
 
 }
