@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 export default function AddTask() {
 
-        const today = new Date();
+        // const today = new Date();
+        const today = "01/03/2023";
+        
 
         const [date, setDate] = useState({ today });
         const [title, setTitle] = useState('');
         const [details, setDetails] = useState('');
-        const [priority, setPriority] = useState('');
+        const [priority, setPriority] = useState('Normal');
         const [status, setStatus] = useState('False');
 
         const handleSubmit = async (e) => {
             e.preventDefault();
             const task = { date, title, details, priority, status }
-            await axios.post("http://localhost:8080/api/create-task", task)
+            await axios.post("http://localhost:8080/create-task", task)
             navigate("/");
         }
 
@@ -33,19 +36,20 @@ export default function AddTask() {
                         <div className="mb-3">
                             <label htmlFor="date" className="form-label">Date</label>
                             <input
-                                type={"date"}
+                                type="date"
                                 className="form-control"
-                                placeholder="Enter a date"
+                                defaultValue={today}
                                 name="date"
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
+                                required
                             />
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="title" className="form-label">Title</label>
                             <input
-                                type={"text"}
+                                type="text"
                                 className="form-control"
                                 placeholder="Enter a title"
                                 name="title"
@@ -57,8 +61,8 @@ export default function AddTask() {
 
                         <div className="mb-3">
                             <label htmlFor="details" className="form-label">Details</label>
-                            <input
-                                type={"text"}
+                            <textarea
+                                type="text"
                                 className="form-control"
                                 placeholder="Enter a details"
                                 name="details"
@@ -75,15 +79,13 @@ export default function AddTask() {
 
                                 <option value="Normal">Normal</option>
                                 <option value="Low">Low</option>
-                                <option value="Urgent">Urgent</option>
+                                <option value="Urgent">Urgent</option>ś
                             </select>
                         </div>
 
-
-
                         <div className="col-md-12 text-center">
-                            <button type="submit" className="btn btn-primary me-1">Save</button>
-                            <Link className="btn btn-secondary me-1" to="/">Cancel</Link>
+                            <Link className="btn btn-secondary me-1" to="/"><Icon.XLg /></Link>
+                            <button type="submit" className="btn btn-primary me-1"><Icon.CheckLg /></button>
                         </div>
                     </form>
 

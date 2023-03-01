@@ -21,9 +21,19 @@ public class ToDoController {
         this.toDoRepository = toDoRepository;
     }
 
-    @GetMapping("/later")
+    @GetMapping("/tasks")
+    public List<ToDoModel> getAllModels() {
+        return toDoService.getAllModels();
+    }
+
+    @GetMapping("/calendar")
     public List<ToDoModel> getUndoneModels() {
         return toDoService.getUndoneModels();
+    }
+
+    @GetMapping("/later")
+    public List<ToDoModel> getLaterModels() {
+        return toDoService.getLaterModels();
     }
 
     @GetMapping("/")
@@ -36,7 +46,7 @@ public class ToDoController {
         return toDoService.getDoneModels();
     }
 
-    @PostMapping("/api/create-task")
+    @PostMapping("/create-task")
     public void newToDoModel(@RequestBody ToDoModel toDoModel){
         toDoService.save(toDoModel);
     }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 export default function EditTask() {
 
@@ -69,7 +70,7 @@ export default function EditTask() {
 
                         <div className="mb-3">
                             <label htmlFor="details" className="form-label">Details</label>
-                            <input
+                            <textarea
                                 type={"text"}
                                 className="form-control"
                                 placeholder="Enter a details"
@@ -92,8 +93,8 @@ export default function EditTask() {
                         </div>
 
                         <div className="col-md-12 text-center">
-                            <button type="submit" className="btn btn-primary me-1">Save</button>
-                            <Link className="btn btn-secondary me-1" to="/">Cancel</Link>
+                            <Link className="btn btn-secondary me-1" to="/"><Icon.XLg /></Link>
+                            <button type="submit" className="btn btn-primary me-1"><Icon.CheckLg /></button>
                         </div>
                     </form>
 

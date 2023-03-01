@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,8 +36,23 @@ public class ToDoService {
         }
 
         List<ToDoModel> collectedModels = todayModels.stream()
-                .sorted(Comparator.comparing(ToDoModel::getDate))
+//                .sorted(Comparator.comparing(ToDoModel::getDate))
                 .sorted(Comparator.comparing(ToDoModel::getPriority).reversed())
+                .collect(Collectors.toList());
+        return collectedModels;
+    }
+
+    public List<ToDoModel> getLaterModels() {
+        List<ToDoModel> allModels = getAllModels();
+        List<ToDoModel> laterModels = new ArrayList<>();
+        for (ToDoModel laterTask : allModels)
+            if (laterTask.getStatus().equals(false) &&
+                    !(laterTask.getDate().equals(LocalDate.now())) && !(laterTask.getDate().isBefore(LocalDate.now()))) {
+                laterModels.add(laterTask);
+            }
+
+        List<ToDoModel> collectedModels = laterModels.stream()
+                .sorted(Comparator.comparing(ToDoModel::getDate))
                 .collect(Collectors.toList());
         return collectedModels;
     }
@@ -47,15 +61,10 @@ public class ToDoService {
         List<ToDoModel> allModels = getAllModels();
         List<ToDoModel> undoneModels = new ArrayList<>();
         for (ToDoModel undoneTask : allModels)
-            if (undoneTask.getStatus().equals(false) &&
-                    !(undoneTask.getDate().equals(LocalDate.now())) && !(undoneTask.getDate().isBefore(LocalDate.now()))) {
+            if (undoneTask.getStatus().equals(false)) {
                 undoneModels.add(undoneTask);
             }
-
-        List<ToDoModel> collectedModels = undoneModels.stream()
-                .sorted(Comparator.comparing(ToDoModel::getDate))
-                .collect(Collectors.toList());
-        return collectedModels;
+        return undoneModels;
     }
 
     public List<ToDoModel> getDoneModels() {

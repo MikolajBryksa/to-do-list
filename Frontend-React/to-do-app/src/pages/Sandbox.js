@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Confirm from '../layout/Confirm';
 
 export default function Sandbox() {
 
@@ -13,6 +14,8 @@ export default function Sandbox() {
 
     return (
         <>
+        <h2 className="text-center m-4">Sandbox</h2>
+
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow d-flex">
             <Button onClickFunction={incrementCounter} increment={1} />
             <Button onClickFunction={incrementCounter} increment={2} />
@@ -22,11 +25,10 @@ export default function Sandbox() {
         </div>
 
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow d-flex">
-            <p id='clock'></p>
+            <p id='clock'>Time</p>
         </div>
 
         
-
         </>
     )
 }
