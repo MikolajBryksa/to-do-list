@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Link, useParams } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 export default function ViewTask() {
 
@@ -49,7 +50,7 @@ export default function ViewTask() {
                     </div>
                     <br></br>
                     <div className="col-md-12 text-center">
-                        <Link className="btn btn-secondary me-1" to={"/"}>Back</Link>
+                        <Link className="btn btn-secondary me-1" to="#" onClick={() => window.history.back()}><Icon.XLg /></Link>
                     </div>
                 </div>
             </div>

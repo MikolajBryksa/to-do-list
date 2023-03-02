@@ -14,6 +14,10 @@ function TaskCalendar() {
 
   const [events, setEvents] = useState([]);
 
+  function handleEventClick(eventInfo) {
+    const taskId = eventInfo.event.id;
+    window.location.href = `/view-task/${taskId}`; }
+
   useEffect(() => {
     axios.get("http://localhost:8080/calendar").then((response) => {
       const events = response.data.map((task) => {
@@ -29,7 +33,6 @@ function TaskCalendar() {
     });
   }, []);
 
-
   return (
     <div className="col-md-10 offset-md-1 border rounded p-4 mt-2 shadow">
     <FullCalendar
@@ -40,12 +43,7 @@ function TaskCalendar() {
       displayEventTime={false}
       eventDisplay="block"
       height="auto"
-      eventClick={
-        function(arg){
-          alert(arg.event.title)
-        }}
-
-      
+      eventClick={handleEventClick}
     />
     </div>
   );

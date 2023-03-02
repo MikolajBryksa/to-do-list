@@ -7,8 +7,8 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
-@Entity(name = "to_do_model")
-public class ToDoModel {
+@Entity(name = "tasks")
+public class TaskModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class ToDoModel {
     private String priority;
     private Boolean status;
 
-    public ToDoModel() {
+    public TaskModel() {
     }
 
-    public ToDoModel(Integer id, LocalDate date, String title, String details, String priority, Boolean status) {
+    public TaskModel(Integer id, LocalDate date, String title, String details, String priority, Boolean status) {
         this.id = id;
         this.date = date;
         this.title = title;

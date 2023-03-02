@@ -49,7 +49,6 @@ export default function EditTask() {
                             <input
                                 type={"date"}
                                 className="form-control"
-                                placeholder="Enter a date"
                                 name="date"
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
@@ -61,7 +60,6 @@ export default function EditTask() {
                             <input
                                 type={"text"}
                                 className="form-control"
-                                placeholder="Enter a title"
                                 name="title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
@@ -73,7 +71,6 @@ export default function EditTask() {
                             <textarea
                                 type={"text"}
                                 className="form-control"
-                                placeholder="Enter a details"
                                 name="details"
                                 value={details}
                                 onChange={(e) => setDetails(e.target.value)}
@@ -93,7 +90,7 @@ export default function EditTask() {
                         </div>
 
                         <div className="col-md-12 text-center">
-                            <Link className="btn btn-secondary me-1" to="/"><Icon.XLg /></Link>
+                            <Link className="btn btn-secondary me-1" to="#" onClick={() => window.history.back()}><Icon.XLg /></Link>
                             <button type="submit" className="btn btn-primary me-1"><Icon.CheckLg /></button>
                         </div>
                     </form>

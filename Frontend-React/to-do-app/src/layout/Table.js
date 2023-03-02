@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
-import Popup from './Popup';
+import PopupDelete from './PopupDelete';
 
 export default function Table(props) {
+
+    const location = useLocation();
 
     const api = props.api;
 
@@ -61,8 +63,11 @@ export default function Table(props) {
                                     <td className="text-center">
                                         <Link className="btn btn-primary me-1" to={`/view-task/${task.id}`}><Icon.ArrowRight /></Link>
                                         <Link className="btn btn-info me-1" to={`/edit-task/${task.id}`}><Icon.PlusLg /></Link>
-                                        <button className="btn btn-success me-1" onClick={() => statusTask(task.id)}><Icon.CheckLg /></button>
-                                        <Popup task={task} loadTasks={loadTasks} show={show} toggleShow={toggleShow}/>
+
+                                        <button className={location.pathname === '/archive' ? 'btn btn-warning me-1' : 'btn btn-success me-1'} onClick={() => statusTask(task.id)}><Icon.CheckLg /></button>
+
+
+                                        <PopupDelete task={task} loadTasks={loadTasks} show={show} toggleShow={toggleShow}/>
                                     </td>
                                 </tr>
                             ))

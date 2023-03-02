@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
+import { format } from 'date-fns';
 
 export default function AddTask() {
 
-        // const today = new Date();
-        const today = "01/03/2023";
-        
+    const today = new Date();
+    const formattedToday = format(today, 'yyyy-MM-dd');
 
-        const [date, setDate] = useState({ today });
-        const [title, setTitle] = useState('');
-        const [details, setDetails] = useState('');
-        const [priority, setPriority] = useState('Normal');
-        const [status, setStatus] = useState('False');
+    const [date, setDate] = useState(formattedToday);
+    const [title, setTitle] = useState('');
+    const [details, setDetails] = useState('');
+    const [priority, setPriority] = useState('Normal');
+    const [status, setStatus] = useState('False');
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const task = { date, title, details, priority, status }
-            await axios.post("http://localhost:8080/create-task", task)
-            navigate("/");
-        }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const task = { date, title, details, priority, status }
+        await axios.post("http://localhost:8080/create-task", task)
+        navigate("/");
+    }
 
     let navigate = useNavigate()
 
@@ -51,7 +51,7 @@ export default function AddTask() {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Enter a title"
+                                placeholder="Title is required"
                                 name="title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
@@ -64,7 +64,7 @@ export default function AddTask() {
                             <textarea
                                 type="text"
                                 className="form-control"
-                                placeholder="Enter a details"
+                                placeholder="Details are optional"
                                 name="details"
                                 value={details}
                                 onChange={(e) => setDetails(e.target.value)}
@@ -84,7 +84,7 @@ export default function AddTask() {
                         </div>
 
                         <div className="col-md-12 text-center">
-                            <Link className="btn btn-secondary me-1" to="/"><Icon.XLg /></Link>
+                            <Link className="btn btn-secondary me-1" to="#" onClick={() => window.history.back()}><Icon.XLg /></Link>
                             <button type="submit" className="btn btn-primary me-1"><Icon.CheckLg /></button>
                         </div>
                     </form>

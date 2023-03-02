@@ -5,17 +5,17 @@ import * as Icon from 'react-bootstrap-icons';
 import axios from "axios";
 import Table from './Table';
 
-function Popup(props) {
+function PopupDelete(props) {
   const [show, setShow] = useState(props.show);
 
   const deleteTask = async (id) => {
     await axios.delete(`http://localhost:8080/tasks/${id}`)
     props.toggleShow();
     props.loadTasks();
-    
-}
 
-  return ( 
+  }
+
+  return (
     <>
       <button className="btn btn-danger me-1" onClick={props.toggleShow}><Icon.XLg /></button>
 
@@ -29,13 +29,13 @@ function Popup(props) {
           <Modal.Title>Delete this task?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
+
           <p style={{ color: 'red' }}>{props.task.title}</p>
-    
+
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn btn-secondary" onClick={props.toggleShow}>
-          <Icon.XLg />
+            <Icon.XLg />
           </Button>
           <Button className="btn btn-primary" onClick={() => deleteTask(props.task.id)}><Icon.CheckLg /></Button>
         </Modal.Footer>
@@ -45,4 +45,4 @@ function Popup(props) {
 }
 
 
-export default Popup;
+export default PopupDelete;

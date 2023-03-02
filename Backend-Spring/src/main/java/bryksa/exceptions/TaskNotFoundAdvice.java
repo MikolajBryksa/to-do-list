@@ -10,15 +10,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class ModelNotFoundAdvice {
+public class TaskNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(ModelNotFoundException.class)
+    @ExceptionHandler(TaskNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String,String> exceptionHandler(ModelNotFoundException exception){
+    public Map<String, String> exceptionHandler(TaskNotFoundException exception) {
 
-        Map<String,String> errorMap=new HashMap<>();
-        errorMap.put("errorMessage",exception.getMessage());
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", exception.getMessage());
 
         return errorMap;
     }
