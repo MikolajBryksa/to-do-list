@@ -66,7 +66,6 @@ export default function Table(props) {
 
                                         <button className={location.pathname === '/archive' ? 'btn btn-warning me-1' : 'btn btn-success me-1'} onClick={() => statusTask(task.id)}><Icon.CheckLg /></button>
 
-
                                         <PopupDelete task={task} loadTasks={loadTasks} show={show} toggleShow={toggleShow}/>
                                     </td>
                                 </tr>

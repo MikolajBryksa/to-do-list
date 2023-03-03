@@ -29,9 +29,9 @@ public class TasksService {
         List<TaskModel> todayTasks = new ArrayList<>();
 
         for (TaskModel todayTask : allTasks) {
-            if (todayTask.getStatus().equals(false) &&
-                    todayTask.getDate().equals(LocalDate.now()) || todayTask.getDate().isBefore(LocalDate.now())) {
-                todayTasks.add(todayTask);
+            if (todayTask.getStatus().equals(false)) {
+                if (todayTask.getDate().equals(LocalDate.now()) || todayTask.getDate().isBefore(LocalDate.now())) {
+                    todayTasks.add(todayTask);}
             }
         }
 
@@ -44,6 +44,7 @@ public class TasksService {
     public List<TaskModel> getLaterTasks() {
         List<TaskModel> allTasks = getAllTasks();
         List<TaskModel> laterTasks = new ArrayList<>();
+
         for (TaskModel laterTask : allTasks)
             if (laterTask.getStatus().equals(false) &&
                     !(laterTask.getDate().equals(LocalDate.now())) && !(laterTask.getDate().isBefore(LocalDate.now()))) {
