@@ -36,12 +36,14 @@ public class EmailClient {
         String formattedList = String.join("\n", titlesList);
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("tasks@bryksa.com");
-        simpleMailMessage.setTo("bryksamikolaj@gmail.com");
+        simpleMailMessage.setFrom("to-do@list.com");
+
+        // Change your email
+        simpleMailMessage.setTo("your-email@gmail.com");
+
         simpleMailMessage.setSubject(String.valueOf( allTasks.get(0).getDate()));
         simpleMailMessage.setText(formattedList);
         System.out.println("Email sent");
         javaMailSender.send(simpleMailMessage);
     }
-
 }
