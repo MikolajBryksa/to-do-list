@@ -32,7 +32,8 @@ function TaskCalendar() {
   }, []);
 
   return (
-    <div className="col-md-10 offset-md-1 border rounded p-4 mt-2 shadow">
+    <div className="col-md-10 offset-md-1 border rounded p-4 mt-3 shadow">
+
       <FullCalendar
         plugins={[dayGridPlugin, bootstrap5Plugin]}
         themeSystem="bootstrap5"
