@@ -6,6 +6,7 @@ This application is a task management tool developed with:
 - Bootstrap for styling
 
 It allows users to create, edit, and manage their to-do tasks efficiently.
+
 The application includes: task prioritization, status tracking and a calendar.
 
 ### Setup
@@ -43,4 +44,10 @@ The application includes: task prioritization, status tracking and a calendar.
      ```
      npm start
      ```
+
+### Preview
+
+![Add task](/Frontend-React/public/screenshots/to-do-list-add-task.png)
+![Today's tasks](/Frontend-React/public/screenshots/to-do-list-today.png)
+![Calendar](/Frontend-React/public/screenshots/to-do-list-calendar.png)
 
