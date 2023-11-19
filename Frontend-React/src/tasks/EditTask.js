@@ -20,10 +20,6 @@ export default function EditTask() {
 
   const { id } = useParams();
 
-  useEffect(() => {
-    loadTask();
-  }, []);
-
   const loadTask = async () => {
     const result = await axios.get(`http://localhost:8080/tasks/${id}`);
     setDate(result.data.date);
@@ -31,6 +27,11 @@ export default function EditTask() {
     setDetails(result.data.details);
     setPriority(result.data.priority);
   };
+
+  useEffect(() => {
+    loadTask();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="container">

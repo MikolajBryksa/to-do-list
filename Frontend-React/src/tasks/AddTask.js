@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import { format } from "date-fns";
 
 export default function AddTask() {
-  const today = new Date();
-  const formattedToday = format(today, "yyyy-MM-dd");
-
-  const [date, setDate] = useState(formattedToday);
+  const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [priority, setPriority] = useState("Normal");
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedToday = format(today, "yyyy-MM-dd");
+    setDate(formattedToday);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +37,9 @@ export default function AddTask() {
                 Date
               </label>
               <input
+                id="date"
                 type="date"
                 className="form-control"
-                defaultValue={today}
                 name="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -49,6 +52,7 @@ export default function AddTask() {
                 Title
               </label>
               <input
+                id="title"
                 type="text"
                 className="form-control"
                 placeholder="Title is required"
@@ -64,6 +68,7 @@ export default function AddTask() {
                 Details
               </label>
               <textarea
+                id="details"
                 type="text"
                 className="form-control"
                 placeholder="Details are optional"
@@ -78,6 +83,7 @@ export default function AddTask() {
                 Priority
               </label>
               <select
+                id="priority"
                 name="priority"
                 className="form-control"
                 data-toggle="dropdown"

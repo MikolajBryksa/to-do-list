@@ -56,7 +56,7 @@ export default function Table(props) {
           </thead>
           <tbody>
             {tasks.map((task, index) => (
-              <tr
+              <tr key={index}
                 className={getPriority(task.priority)}
                 onClick={() => setSelectedTask(task)}
               >

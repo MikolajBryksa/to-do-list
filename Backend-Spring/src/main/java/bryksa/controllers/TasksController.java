@@ -3,7 +3,6 @@ package bryksa.controllers;
 import bryksa.exceptions.TaskNotFoundException;
 import bryksa.models.TaskModel;
 import bryksa.repository.TasksRepository;
-import bryksa.services.EmailClient;
 import bryksa.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +14,11 @@ import java.util.List;
 public class TasksController {
     private final TasksService tasksService;
     private final TasksRepository tasksRepository;
-    private final EmailClient emailClient;
 
     @Autowired
-    public TasksController(TasksService tasksService, TasksRepository tasksRepository, EmailClient emailClient) {
+    public TasksController(TasksService tasksService, TasksRepository tasksRepository) {
         this.tasksService = tasksService;
         this.tasksRepository = tasksRepository;
-        this.emailClient = emailClient;
     }
 
     @GetMapping("/")
@@ -88,10 +85,5 @@ public class TasksController {
         boolean status = doneTask.getStatus();
         doneTask.setStatus(!status);
         tasksRepository.save(doneTask);
-    }
-
-    @GetMapping("/send-mail")
-    public void sendEmail() {
-        emailClient.emailSender();
     }
 }
