@@ -1,13 +1,13 @@
 # To-Do List
 
-This application is a task management tool developed with:
-- Java for the backend
-- React for the frontend
-- Bootstrap for styling
-
-It allows users to create, edit, and manage their to-do tasks efficiently.
-
+This task management tool allows users to create, edit, and manage to-do tasks.
 The application includes: task prioritization, status tracking and a calendar.
+
+### Tech Stack
+
+- Java (backend)
+- React (frontend)
+- Bootstrap (style)
 
 ### Setup
 
