@@ -1,13 +1,14 @@
 # To-Do List
 
-This task management tool allows users to create, edit, and manage to-do tasks.\
+This **task management tool** allows users to create, edit, and manage to-do tasks.\
 The application includes: task prioritization, status tracking and a calendar.
 
 ### Tech Stack
 
-- Java (backend)
-- React (frontend)
+- Java with Spring Boot (backend)
+- JavaScript with React (frontend)
 - Bootstrap (style)
+- PostgreSQL (database)
 
 ### Setup
 
