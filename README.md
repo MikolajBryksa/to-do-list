@@ -15,47 +15,55 @@ The application includes: task prioritization, status tracking and a calendar.
 1. Backend (Spring Boot):
 
 - Navigate to the Backend-Spring directory:
-```
-    cd Backend-Spring
-```
+
+  ```
+      cd Backend-Spring
+  ```
 
 - Check Java version in pom.xml file:
-```
-    <java.version>19</java.version>
-```
+
+  ```
+      <java.version>19</java.version>
+  ```
 
 - Set database in application.properties file:
-```
-    spring.datasource.username=postgres
-    spring.datasource.password=postgres
-```
+
+  ```
+      spring.datasource.username=postgres
+      spring.datasource.password=postgres
+  ```
 
 - Build and package the Spring Boot application using Maven:
-```
-    ./mvnw clean package
-```
+
+  ```
+      ./mvnw clean package
+  ```
 
 - Run the Java application using the generated JAR file:
-```
-    java -jar target/demo-0.0.1-SNAPSHOT.jar
-```
+
+  ```
+      java -jar target/demo-0.0.1-SNAPSHOT.jar
+  ```
 
 2. Frontend (React):
 
 - Navigate to the Frontend-React directory:
-```
-    cd Frontend-React
-```
+
+  ```
+      cd Frontend-React
+  ```
 
 - Install the required npm packages:
-```
-    npm install
-```
+
+  ```
+      npm install
+  ```
 
 - Start the React application:
-```
-    npm start
-```
+
+  ```
+      npm start
+  ```
 
 ### Preview
 
